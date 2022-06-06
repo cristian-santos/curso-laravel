@@ -4,6 +4,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
 use Illuminate\Support\Facades\Route;
+use Prophecy\Promise\ReturnPromise;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,18 @@ Route::prefix('/app')->group(function(){
 });
 
 
+Route::get('/rota1', function() {
+    echo 'Rota 1';
+})->name('site.rota1');
+
+Route::get('/rota2', function() {
+    Return redirect()->route('site.rota1');
+})->name('site.rota2');
+
+
+// Route::redirect('rota1', 'rota2');
+
+// Rota de fallback
+Route::fallback(function() {
+    echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique aqui</a> para ir até a página principal';
+});
