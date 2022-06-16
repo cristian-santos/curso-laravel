@@ -36,7 +36,7 @@ Status: {{ $fornecedores[0]['status'] }}
         CNPJ: {{ $fornecedores[0]['cnpj'] }}
     @endisset
 @endisset
-<br><br>
+<br><br><br>
 
 
 @isset($fornecedores)
@@ -62,7 +62,7 @@ Status: {{ $fornecedores[0]['status'] }}
             Estado não indentificado
     @endswitch
 @endisset
-<br><br>
+<br><br><br>
 
 
 {{--@for($i = 0; $i < 10; $i++)--}}
@@ -82,3 +82,39 @@ Status: {{ $fornecedores[0]['status'] }}
         <hr>
     @endfor
 @endisset
+<br><br><br>
+
+
+@isset($fornecedores)
+    @php $i = 0 @endphp
+    @while(isset($fornecedores[$i]))
+        Fornecedor: {{ $fornecedores[$i]['nome'] }}
+        <br>
+        Status: {{ $fornecedores[$i]['status'] }}
+        <br>
+        CNPJ: {{ $fornecedores[$i]['cnpj'] }}
+        <br>
+        Telefone: ({{ $fornecedores[0]['ddd'] ?? '' }}) {{ $fornecedores[0]['telefone'] ?? '' }}
+        @php $i++ @endphp
+    @endwhile
+@endisset
+<br><br><br>
+
+@isset($fornecedores)
+    @forelse($fornecedores as $indice => $fornecedor)
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br>
+        Status: {{ $fornecedor['status'] }}
+        <br>
+        CNPJ: {{ $fornecedor['cnpj'] }}
+        <br>
+        Telefone: ({{ $fornecedo['ddd'] ?? '' }}) {{ $fornecedor['telefone'] ?? '' }}
+        <hr>
+    @empty
+        Não existem fornecedores cadastrados!!
+    @endforelse
+
+        @endisset
+<br><br><br>
+
+
