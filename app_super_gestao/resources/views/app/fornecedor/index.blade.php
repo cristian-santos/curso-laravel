@@ -62,3 +62,23 @@ Status: {{ $fornecedores[0]['status'] }}
             Estado não indentificado
     @endswitch
 @endisset
+<br><br>
+
+
+{{--@for($i = 0; $i < 10; $i++)--}}
+{{--    {{ $i }}--}}
+{{--@endfor--}}
+
+
+@isset($fornecedores)
+    @for($i = 0; isset($fornecedores[$i]); $i++)
+        Fornecedor: {{ $fornecedores[$i]['nome'] }}
+        <br>
+        Status: {{ $fornecedores[$i]['status'] }}
+        <br>
+        CNPJ: {{ $fornecedores[$i]['cnpj'] }}
+        <br>
+        Telefone: ({{ $fornecedores[0]['ddd'] ?? '' }}) {{ $fornecedores[0]['telefone'] ?? '' }}
+        <hr>
+    @endfor
+@endisset
