@@ -3,6 +3,7 @@
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 use Prophecy\Promise\ReturnPromise;
 
@@ -21,12 +22,12 @@ use Prophecy\Promise\ReturnPromise;
 //     return 'Olá, seja bem-vindo ao curso';
 // });
 
-// Route::get('contato/{nome}/{categoria}/{assunto}/{mensagem?}', 
+// Route::get('contato/{nome}/{categoria}/{assunto}/{mensagem?}',
 //     function(string $nome, string $categoria, string $assunto, string $mensagem = 'Mensagem não informada') {
 //         echo "Estamos aqui: $nome - $categoria - $assunto - $mensagem";
 //     });
 
-// Route::get('contato/{nome}/{categoria_id}', 
+// Route::get('contato/{nome}/{categoria_id}',
 //     function(string $nome = 'Desconhecido',
 //                 int $categoria_id = 1) {
 //         echo "Estamos aqui: $nome - $categoria_id";
@@ -34,11 +35,8 @@ use Prophecy\Promise\ReturnPromise;
 
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
-
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
-
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
-
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 
@@ -49,16 +47,7 @@ Route::prefix('/app')->group(function(){
 });
 
 
-Route::get('/rota1', function() {
-    echo 'Rota 1';
-})->name('site.rota1');
-
-Route::get('/rota2', function() {
-    Return redirect()->route('site.rota1');
-})->name('site.rota2');
-
-
-// Route::redirect('rota1', 'rota2');
+Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
 
 // Rota de fallback
 Route::fallback(function() {
