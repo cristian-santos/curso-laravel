@@ -100,6 +100,7 @@ Status: {{ $fornecedores[0]['status'] }}
 @endisset
 <br><br><br>
 
+
 @isset($fornecedores)
     @forelse($fornecedores as $indice => $fornecedor)
         Fornecedor: {{ $fornecedor['nome'] }}
@@ -117,4 +118,36 @@ Status: {{ $fornecedores[0]['status'] }}
         @endisset
 <br><br><br>
 
+
+@isset($fornecedores)
+
+    @forelse($fornecedores as $indice => $fornecedor)
+        Iteracao atual: {{ $loop->iteration }}
+        <br>
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br>
+        Status: {{ $fornecedor['status'] }}
+        <br>
+        CNPJ: {{ $fornecedor['cnpj'] }}
+        <br>
+        Telefone: ({{ $fornecedo['ddd'] ?? '' }}) {{ $fornecedor['telefone'] ?? '' }}
+        <br>
+        @if($loop->first)
+            Primeira iteração do loop
+            @endif
+        <br>
+        @if($loop->last)
+            Ultima iteração do loop
+        @endif
+
+        <br>
+         Total de registros: {{ $loop->count }}
+        <hr>
+
+    @empty
+        Não existem fornecedores cadastrados!!
+    @endforelse
+
+@endisset
+<br><br><br>
 
